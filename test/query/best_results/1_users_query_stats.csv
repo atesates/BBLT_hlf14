@@ -1,3 +1,0 @@
-"Type","Name","Request Count","Failure Count","Median Response Time","Average Response Time","Min Response Time","Max Response Time","Average Content Size","Requests/s","Failures/s","50%","66%","75%","80%","90%","95%","98%","99%","99.9%","99.99%","99.999%","100%"
-"POST","/event/queryevent",1187,0,53,50,15,319,4431,3.96,0.00,53,55,57,58,62,64,68,72,88,320,320,320
-"None","Aggregated",1187,0,53,50,15,319,4431,3.96,0.00,53,55,57,58,62,64,68,72,88,320,320,320

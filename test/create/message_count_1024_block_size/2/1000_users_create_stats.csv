@@ -1,3 +1,0 @@
-"Type","Name","Request Count","Failure Count","Median Response Time","Average Response Time","Min Response Time","Max Response Time","Average Content Size","Requests/s","Failures/s","50%","66%","75%","80%","90%","95%","98%","99%","99.9%","99.99%","99.999%","100%"
-"GET","/event/createevent",11398,0,25000,24483,80,71698,15,38.02,0.00,25000,25000,25000,26000,26000,27000,47000,60000,70000,72000,72000,72000
-"None","Aggregated",11398,0,25000,24483,80,71698,15,38.02,0.00,25000,25000,25000,26000,26000,27000,47000,60000,70000,72000,72000,72000
