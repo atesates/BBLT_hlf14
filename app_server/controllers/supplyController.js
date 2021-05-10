@@ -63,13 +63,15 @@ module.exports.callPurchase = (req, res) => {
         })
 }
 module.exports.callGetAllSupplyAndDemand = function (req, res) {
-    //console.log('aaaaaaaaaaaa')
+    console.log('aaaaaaaaaaaa')
     hlfOperations.getAllSupplyAndDemand().then(result=>{
-        res.render('supplylist', { result: JSON.parse(result) });
+        //console.log(result)
+        //res.render('supplylist', { result: JSON.parse(result) });
+        //res.render('supplylist', { result: JSON.stringify(result) });
 
-        // return res.status(200).json({
-        //     status: 'ok'
-        // });
+        return res.status(200).json({
+            status: 'ok'
+        });
 
     })
     // hlfOperations.getAllSupplyAndDemand(function (err, results) {

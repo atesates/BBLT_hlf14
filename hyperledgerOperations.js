@@ -13,7 +13,10 @@ function prettyJSONString(inputString) {
 }
 
 
-
+async function enrollInit(){
+    enrollAdmin()
+    registerUser()
+}
 async function createSupply() {
 	try {
 
@@ -38,13 +41,16 @@ async function createSupply() {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
-
+        const contract = network.getContract('medicinetransfer');
+        
+        var preId = Math.floor(Math.random() * 10000)
+        console.log('preId;' + preId)
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
-        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        await contract.submitTransaction('createMedicine', 'MEDICINE' + preId, 'Deposilin', '20', '80', 'Pharmacy3','02.02.2022','03.03.2021','on supply','Pharmacy3','null');
+        //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        console.log('Transaction create has been submitted');
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
@@ -75,12 +81,14 @@ async function createPurchase() {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
+        const contract = network.getContract('medicinetransfer');
 
+        var preId = Math.floor(Math.random() * 100)
+        console.log('preId;' + preId)
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
+        const result = await contract.evaluateTransaction('supplyMedicine', 'MEDICINE01', 'Pharmacy' + preId);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
@@ -103,21 +111,25 @@ async function getAllSupplyAndDemand() {
             console.log('Run the registerUser.js application before retrying');
             return;
         }
+        console.log('gateway');
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
         await gateway.connect(ccpPath, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: true } });
+        console.log('connect');
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('mychannel');
+        console.log('network');
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
+        const contract = network.getContract('medicinetransfer');
+        console.log('contract');
 
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
+        const result = await contract.evaluateTransaction('queryAllMedicines');
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
@@ -151,12 +163,12 @@ async function getPoductById() {
         const network = await gateway.getNetwork('mychannel');
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar');
+        const contract = network.getContract('medicinetransfer');
 
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
+        const result = await contract.evaluateTransaction('queryAllMedicines');
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
@@ -164,5 +176,5 @@ async function getPoductById() {
         process.exit(1);
     }
 }
-module.exports = { createSupply, getAllSupplyAndDemand, createPurchase, getPoductById}
+module.exports = { enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById}
 
