@@ -11,4 +11,4 @@ class WebsiteUser(HttpUser):
 
     @task
     def add_event(self):
-        self.client.get("/supply/callcreatesupply")
+        self.client.get("/supply/supplylist")
