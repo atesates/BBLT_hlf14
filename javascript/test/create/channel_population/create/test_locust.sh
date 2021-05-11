@@ -5,7 +5,7 @@ TYPE="create"
 export PATH="$PATH:/home/ates/.local/bin"
 date +"Timestamp before tests start, %s" > id.txt
 
-for USER_COUNT in 100 #1 2 5 10 20 50 100 200 500 1000
+for USER_COUNT in 10 #1 2 5 10 20 50 100 200 500 1000
 do
 	echo "========================================"
 	echo "====== Test for $USER_COUNT users ==========="

@@ -78,7 +78,33 @@ docker exec \
     -v 1.0 \
     -p "$CC_SRC_PATH" \
     -l "$CC_RUNTIME_LANGUAGE"
-
+    
+echo "Installing smart contract on peer1.org1.example.com"
+docker exec \
+  -e CORE_PEER_LOCALMSPID=Org1MSP \
+  -e CORE_PEER_ADDRESS=peer1.org1.example.com:8051 \
+  -e CORE_PEER_MSPCONFIGPATH=${ORG1_MSPCONFIGPATH} \
+  -e CORE_PEER_TLS_ROOTCERT_FILE=${ORG1_TLS_ROOTCERT_FILE} \
+  cli \
+  peer chaincode install \
+    -n medicinetransfer \
+    -v 1.0 \
+    -p "$CC_SRC_PATH" \
+    -l "$CC_RUNTIME_LANGUAGE"
+    
+echo "Installing smart contract on peer1.org2.example.com"
+docker exec \
+  -e CORE_PEER_LOCALMSPID=Org2MSP \
+  -e CORE_PEER_ADDRESS=peer1.org2.example.com:10051 \
+  -e CORE_PEER_MSPCONFIGPATH=${ORG2_MSPCONFIGPATH} \
+  -e CORE_PEER_TLS_ROOTCERT_FILE=${ORG2_TLS_ROOTCERT_FILE} \
+  cli \
+  peer chaincode install \
+    -n medicinetransfer \
+    -v 1.0 \
+    -p "$CC_SRC_PATH" \
+    -l "$CC_RUNTIME_LANGUAGE"
+    
 echo "Instantiating smart contract on mychannel"
 docker exec \
   -e CORE_PEER_LOCALMSPID=Org1MSP \
@@ -111,10 +137,14 @@ docker exec \
     -n medicinetransfer \
     -c '{"function":"initLedger","Args":[]}' \
     --waitForEvent \
-    --cafile ${ORDERER_TLS_ROOTCERT_FILE} \
+   --cafile ${ORDERER_TLS_ROOTCERT_FILE} \
     --peerAddresses peer0.org1.example.com:7051 \
+    --peerAddresses peer1.org1.example.com:8051 \
     --peerAddresses peer0.org2.example.com:9051 \
+    --peerAddresses peer1.org2.example.com:10051 \
     --tlsRootCertFiles ${ORG1_TLS_ROOTCERT_FILE} \
+    --tlsRootCertFiles ${ORG1_TLS_ROOTCERT_FILE} \
+    --tlsRootCertFiles ${ORG2_TLS_ROOTCERT_FILE} \
     --tlsRootCertFiles ${ORG2_TLS_ROOTCERT_FILE}
 set +x
 

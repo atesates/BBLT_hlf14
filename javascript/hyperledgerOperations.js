@@ -43,7 +43,7 @@ async function createSupply() {
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
         
-        var preId = Math.floor(Math.random() * 10000)
+        var preId = Math.floor(Math.random() * 100000)
         console.log('preId;' + preId)
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
