@@ -92,7 +92,6 @@ docker exec \
     -v 1.0 \
     -c '{"Args":[]}' \
     -P "AND('Org1MSP.member','Org2MSP.member')" \
-    --tls \
     --cafile ${ORDERER_TLS_ROOTCERT_FILE} \
     --peerAddresses peer0.org1.example.com:7051 \
     --tlsRootCertFiles ${ORG1_TLS_ROOTCERT_FILE}
@@ -112,7 +111,6 @@ docker exec \
     -n medicinetransfer \
     -c '{"function":"initLedger","Args":[]}' \
     --waitForEvent \
-    --tls \
     --cafile ${ORDERER_TLS_ROOTCERT_FILE} \
     --peerAddresses peer0.org1.example.com:7051 \
     --peerAddresses peer0.org2.example.com:9051 \

@@ -130,8 +130,8 @@ async function getAllSupplyAndDemand() {
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
         const result = await contract.evaluateTransaction('queryAllMedicines');
-        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-
+        //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        console.log('==================SUCCESS================')
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         process.exit(1);
