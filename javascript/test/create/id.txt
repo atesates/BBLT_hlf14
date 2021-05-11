@@ -1,0 +1,22 @@
+Timestamp before tests start, 1593342273
+Timestamp before tests for 1 users, 1593342273
+Timestamp after tests for 1 users, 1593342573
+Timestamp before tests for 2 users, 1593342583
+Timestamp after tests for 2 users, 1593342884
+Timestamp before tests for 5 users, 1593342894
+Timestamp after tests for 5 users, 1593343194
+Timestamp before tests for 10 users, 1593343204
+Timestamp after tests for 10 users, 1593343505
+Timestamp before tests for 20 users, 1593343515
+Timestamp after tests for 20 users, 1593343815
+Timestamp before tests for 50 users, 1593343825
+Timestamp after tests for 50 users, 1593344126
+Timestamp before tests for 100 users, 1593344136
+Timestamp after tests for 100 users, 1593344436
+Timestamp before tests for 200 users, 1593344446
+Timestamp after tests for 200 users, 1593344747
+Timestamp before tests for 500 users, 1593344757
+Timestamp after tests for 500 users, 1593345058
+Timestamp before tests for 1000 users, 1593345068
+Timestamp after tests for 1000 users, 1593345368
+Timestamp after tests end, 1593345378

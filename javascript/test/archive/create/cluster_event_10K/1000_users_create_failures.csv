@@ -1,0 +1,2 @@
+"Method","Name","Error","Occurrences"
+"GET","/event/createevent","('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",140
