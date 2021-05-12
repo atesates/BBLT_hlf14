@@ -65,6 +65,7 @@ module.exports.callPurchase = (req, res) => {
 module.exports.callGetAllSupplyAndDemand = function (req, res) {
     console.log('aaaaaaaaaaaa')
     hlfOperations.getAllSupplyAndDemand().then(result=>{
+        //hlfOperations.queryFabcar().then(result=>{
         //console.log(result)
         //res.render('supplylist', { result: JSON.parse(result) });
         //res.render('supplylist', { result: JSON.stringify(result) });

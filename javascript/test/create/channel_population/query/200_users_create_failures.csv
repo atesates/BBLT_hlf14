@@ -1,2 +1,2 @@
 Method,Name,Error,Occurrences
-GET,/supply/supplylist,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",6
+GET,/supply/supplylist,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",25
