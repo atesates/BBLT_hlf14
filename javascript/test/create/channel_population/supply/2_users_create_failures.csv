@@ -1,3 +1,4 @@
 Method,Name,Error,Occurrences
-GET,/supply/callpurchase,"HTTPConnectionPool(host='127.0.0.1', port=4000): Max retries exceeded with url: /supply/callpurchase (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f47b90a6af0>: Failed to establish a new connection: [Errno 111] Connection refused'))",8
+GET,/supply/callpurchase,"HTTPConnectionPool(host='127.0.0.1', port=4000): Max retries exceeded with url: /supply/callpurchase (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3107c70730>: Failed to establish a new connection: [Errno 111] Connection refused'))",21
 GET,/supply/callpurchase,"('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",2
+GET,/supply/callpurchase,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",1

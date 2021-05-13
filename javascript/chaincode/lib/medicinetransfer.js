@@ -161,7 +161,7 @@ class MedicineTransfer extends Contract {
             var owner2 = medicine.owner;
             var expirationDate2 = medicine.expirationDate;
             var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
-                today.getHours() + "" + today.getMinutes() + "";
+                today.getHours() + "" + today.getMinutes() + "" ;
             var status2 = 'supplied';
             var supplier2 = medicine.supplier;
             var demander2 = productOwner;
@@ -193,7 +193,7 @@ class MedicineTransfer extends Contract {
             var owner2 = medicine.owner;
             var expirationDate2 = medicine.expirationDate;
             var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
-                today.getHours() + "" + today.getMinutes() + "";
+                today.getHours() + "" + today.getMinutes() + "" ;
             var status2 = 'supplied';
             var supplier2 = medicine.supplier;
             var demander2 = productOwner;
