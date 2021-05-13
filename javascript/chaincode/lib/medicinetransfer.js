@@ -139,7 +139,7 @@ class MedicineTransfer extends Contract {
         await ctx.stub.deleteState(medicineNumber)
         console.info('============= END : deleteMedicine ===========');
     }
-    async suppplySomeProduct(ctx, medicineNumber, productOwner, numberOfSupply ){
+    async supplySomeProduct(ctx, medicineNumber, productOwner, numberOfSupply ){
         console.info('============= START : suppplySomeProduct ===========');
 
         const medicineAsBytes = await ctx.stub.getState(medicineNumber); // get the medicine from chaincode state
@@ -150,19 +150,21 @@ class MedicineTransfer extends Contract {
 
         if (Number(medicine.numberOf) > Number(numberOfSupply)){//there are supply more than demand
             //update supplied product
-            remaining = Number(medicine.numberOf) - Number(numberOfSupply);
-            medicine.numberOf = remaining;
+            var remaining = Number(medicine.numberOf) - Number(numberOfSupply);
+            medicine.numberOf = remaining + '';
             await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine)));
             //create new demand product
-            name2 = medicine.name;
-            value2 = medicine.value;
-            numberOf2 = numberOfSupply;
-            owner = medicine.owner;
-            expirationDate = medicine.expirationDate;
-            issueDate = new Date();
-            status = 'supplied';
-            supplier = medicine.supplier;
-            demander = productOwner;
+            var today = new Date();
+            var name2 = medicine.name;
+            var value2 = medicine.value;
+            var numberOf2 = numberOfSupply;
+            var owner2 = medicine.owner;
+            var expirationDate2 = medicine.expirationDate;
+            var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
+                today.getHours() + "" + today.getMinutes() + "";
+            var status2 = 'supplied';
+            var supplier2 = medicine.supplier;
+            var demander2 = productOwner;
 
             const medicine2 = {
                 name2,
@@ -177,22 +179,24 @@ class MedicineTransfer extends Contract {
                 demander2
             };
     
-            await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine2)));
+            await ctx.stub.putState(medicineNumber + issueDate2, Buffer.from(JSON.stringify(medicine2)));
 
         }
         else if (Number(medicine.numberOf) == Number(numberOfSupply)){//supply equals to demand
             //delete supplied product
             await ctx.stub.deleteState(medicineNumber)
             //create new demand product
-            name2 = medicine.name;
-            value2 = medicine.value;
-            numberOf2 = numberOfSupply;
-            owner = medicine.owner;
-            expirationDate = medicine.expirationDate;
-            issueDate =  new Date();
-            status = 'supplied';
-            supplier = medicine.supplier;
-            demander = productOwner;
+            var today = new Date();
+            var name2 = medicine.name;
+            var value2 = medicine.value;
+            var numberOf2 = numberOfSupply;
+            var owner2 = medicine.owner;
+            var expirationDate2 = medicine.expirationDate;
+            var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
+                today.getHours() + "" + today.getMinutes() + "";
+            var status2 = 'supplied';
+            var supplier2 = medicine.supplier;
+            var demander2 = productOwner;
 
             const medicine2 = {
                 name2,
@@ -207,7 +211,7 @@ class MedicineTransfer extends Contract {
                 demander2
             };
 
-            await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine2)));
+            await ctx.stub.putState(medicineNumber + issueDate2, Buffer.from(JSON.stringify(medicine2)));
         }
         else{//demand exceeds supply
             throw new Error(`${medicineNumber} Supply is not enough`);

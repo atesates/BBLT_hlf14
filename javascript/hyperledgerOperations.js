@@ -88,7 +88,7 @@ async function createPurchase() {
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('supplyMedicine', 'MEDICINE01', 'Pharmacy' + preId);
+        const result = await contract.evaluateTransaction('supplyMedicine', 'MEDICINE1', 'Pharmacy' + preId);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
     } catch (error) {
@@ -204,7 +204,7 @@ async function supply(){
         // Submit the specified transaction.
         // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR10', 'Dave')
-        await contract.submitTransaction('suppplySomeProduct', 'MEDICINE1', 'Pharmacy2','1');
+        await contract.submitTransaction('supplySomeProduct', 'MEDICINE1', 'Pharmacy2','1');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
@@ -252,5 +252,5 @@ async function getPoductById() {
         process.exit(1);
     }
 }
-module.exports = { enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById, queryFabcar}
+module.exports = { supply, enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById, queryFabcar}
 
