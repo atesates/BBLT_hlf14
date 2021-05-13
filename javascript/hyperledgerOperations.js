@@ -85,8 +85,8 @@ async function createSupply() {
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
         
-        var preId = Math.floor(Math.random() * 100000)
-        console.log('preId;' + preId)
+        var preId = countMyself()
+
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
@@ -243,8 +243,11 @@ async function supply(){
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
         
-        var preId = Math.floor(Math.random() * 100)
-        console.log('preId;' + preId)
+        //var preId = Math.floor(Math.random() * 100)
+        //console.log('preId;' + preId)
+        
+        var preId = countMyself()
+        
         // Submit the specified transaction.
         // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR10', 'Dave')
@@ -295,6 +298,20 @@ async function getPoductById() {
         console.error(`Failed to evaluate transaction: ${error}`);
         process.exit(1);
     }
+}
+function countMyself() {
+    // Check to see if the counter has been initialized
+    if ( typeof countMyself.counter == 'undefined' ) {
+        // It has not... perform the initialization
+        countMyself.counter = 0;
+    }
+    else if(countMyself.counter > 98){// there are 100 medicine that initialized
+        countMyself.counter = 0;
+    }
+    var rt = ++countMyself.counter;
+    // Do something stupid to indicate the value
+    console.log('static value: ' + rt);
+    return rt;
 }
 module.exports = { supply, enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById, queryFabcar}
 

@@ -34,11 +34,11 @@ async function main() {
 
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
-
+        var preId = countMyself()
         // Submit the specified transaction.
         // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR10', 'Dave')
-        await contract.submitTransaction('supplySomeProduct', 'MEDICINE1', 'Pharmacy20','1');
+        await contract.submitTransaction('supplySomeProduct', 'MEDICINE' + preId, 'Pharmacy20','1');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
@@ -49,5 +49,15 @@ async function main() {
         process.exit(1);
     }
 }
-
+function countMyself() {
+    // Check to see if the counter has been initialized
+    if ( typeof countMyself.counter == 'undefined' ) {
+        // It has not... perform the initialization
+        countMyself.counter = 0;
+    }
+    var rt = ++countMyself.counter;
+    // Do something stupid to indicate the value
+    console.log('static value: ' + rt);
+    return rt;
+}
 main();

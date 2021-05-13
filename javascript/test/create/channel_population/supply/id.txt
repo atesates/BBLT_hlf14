@@ -1,3 +1,4 @@
-Timestamp before tests start, 1620892546
-Timestamp before tests for 2 users, 1620892546
-Timestamp after tests for 2 users, 1620892641
+Timestamp before tests start, 1620917163
+Timestamp before tests for 100 users, 1620917163
+Timestamp after tests for 100 users, 1620917463
+Timestamp after tests end, 1620917473
