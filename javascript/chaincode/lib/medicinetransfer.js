@@ -26,7 +26,7 @@ class MedicineTransfer extends Contract {
             {
                 name: 'Augmentin',
                 value: '15',
-                numberOf: '150',
+                numberOf: '1500000',
                 owner: 'Pharmacy2',
                 expirationDate: '01.01.2023',
                 issueDate: '01.01.2021',
@@ -138,6 +138,83 @@ class MedicineTransfer extends Contract {
 
         await ctx.stub.deleteState(medicineNumber)
         console.info('============= END : deleteMedicine ===========');
+    }
+    async suppplySomeProduct(ctx, medicineNumber, productOwner, numberOfSupply ){
+        console.info('============= START : suppplySomeProduct ===========');
+
+        const medicineAsBytes = await ctx.stub.getState(medicineNumber); // get the medicine from chaincode state
+        if (!medicineAsBytes || medicineAsBytes.length === 0) {
+            throw new Error(`${medicineNumber} does not exist`);
+        }
+        const medicine = JSON.parse(medicineAsBytes.toString());
+
+        if (Number(medicine.numberOf) > Number(numberOfSupply)){//there are supply more than demand
+            //update supplied product
+            remaining = Number(medicine.numberOf) - Number(numberOfSupply);
+            medicine.numberOf = remaining;
+            await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine)));
+            //create new demand product
+            name2 = medicine.name;
+            value2 = medicine.value;
+            numberOf2 = numberOfSupply;
+            owner = medicine.owner;
+            expirationDate = medicine.expirationDate;
+            issueDate = new Date();
+            status = 'supplied';
+            supplier = medicine.supplier;
+            demander = productOwner;
+
+            const medicine2 = {
+                name2,
+                docType: 'medicine',
+                value2,
+                numberOf2,
+                owner2,
+                expirationDate2,
+                issueDate2,
+                status2,
+                supplier2,
+                demander2
+            };
+    
+            await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine2)));
+
+        }
+        else if (Number(medicine.numberOf) == Number(numberOfSupply)){//supply equals to demand
+            //delete supplied product
+            await ctx.stub.deleteState(medicineNumber)
+            //create new demand product
+            name2 = medicine.name;
+            value2 = medicine.value;
+            numberOf2 = numberOfSupply;
+            owner = medicine.owner;
+            expirationDate = medicine.expirationDate;
+            issueDate =  new Date();
+            status = 'supplied';
+            supplier = medicine.supplier;
+            demander = productOwner;
+
+            const medicine2 = {
+                name2,
+                docType: 'medicine',
+                value2,
+                numberOf2,
+                owner2,
+                expirationDate2,
+                issueDate2,
+                status2,
+                supplier2,
+                demander2
+            };
+
+            await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine2)));
+        }
+        else{//demand exceeds supply
+            throw new Error(`${medicineNumber} Supply is not enough`);
+
+        }
+        console.info('============= END : suppplySomeProduct ===========');
+
     }
 }
 
