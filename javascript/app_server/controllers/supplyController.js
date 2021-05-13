@@ -43,7 +43,7 @@ module.exports.callCreateSupply = (req, res) => {
         })
 }
 module.exports.callPurchase = (req, res) => {
-    hlfOperations.createPurchase().then(() => {
+    hlfOperations.supply().then(() => {
         console.log('supply purchased')
         //console.log(res)
         return res.status(200).json({
