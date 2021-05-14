@@ -39,7 +39,7 @@ async function main() {
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        for (let i = 100; i < 800; i++) {
+        for (let i = 0; i < 300; i++) {
             await contract.submitTransaction('createMedicine', 'MEDICINE' + i, 'Deposilin', '20', '10000', 'Pharmacy' + i,'02.02.2022','03.03.2021','on supply','Pharmacy' + i,'null');
             //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
             console.log('Transaction create has been submitted: ' + i);

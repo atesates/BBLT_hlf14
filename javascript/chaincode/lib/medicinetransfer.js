@@ -14,7 +14,7 @@ class MedicineTransfer extends Contract {
             {
                 name: 'Aspirin',
                 value: '10',
-                numberOf: '100',
+                numberOf: '1',
                 owner: 'Pharmacy1',
                 expirationDate: '01.01.2023',
                 issueDate: '01.01.2021',
@@ -155,31 +155,31 @@ class MedicineTransfer extends Contract {
             await ctx.stub.putState(medicineNumber, Buffer.from(JSON.stringify(medicine)));
             //create new demand product
             var today = new Date();
-            var name2 = medicine.name;
-            var value2 = medicine.value;
-            var numberOf2 = numberOfSupply;
-            var owner2 = medicine.owner;
-            var expirationDate2 = medicine.expirationDate;
-            var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
-                today.getHours() + "" + today.getMinutes() + "" ;
-            var status2 = 'supplied';
-            var supplier2 = medicine.supplier;
-            var demander2 = productOwner;
+            var name = medicine.name;
+            var value = medicine.value;
+            var numberOf = numberOfSupply;
+            var owner = medicine.owner;
+            var expirationDate = medicine.expirationDate;
+            var issueDate = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
+                today.getHours() + "" + today.getMinutes() + ""  ;
+            var status = 'supplied';
+            var supplier = medicine.supplier;
+            var demander = productOwner;
 
             const medicine2 = {
-                name2,
+                name,
                 docType: 'medicine',
-                value2,
-                numberOf2,
-                owner2,
-                expirationDate2,
-                issueDate2,
-                status2,
-                supplier2,
-                demander2
+                value,
+                numberOf,
+                owner,
+                expirationDate,
+                issueDate,
+                status,
+                supplier,
+                demander
             };
     
-            await ctx.stub.putState(medicineNumber + issueDate2, Buffer.from(JSON.stringify(medicine2)));
+            await ctx.stub.putState(medicineNumber + issueDate, Buffer.from(JSON.stringify(medicine2)));
 
         }
         else if (Number(medicine.numberOf) == Number(numberOfSupply)){//supply equals to demand
@@ -187,31 +187,31 @@ class MedicineTransfer extends Contract {
             await ctx.stub.deleteState(medicineNumber)
             //create new demand product
             var today = new Date();
-            var name2 = medicine.name;
-            var value2 = medicine.value;
-            var numberOf2 = numberOfSupply;
-            var owner2 = medicine.owner;
-            var expirationDate2 = medicine.expirationDate;
-            var issueDate2 = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
-                today.getHours() + "" + today.getMinutes() + "" ;
-            var status2 = 'supplied';
-            var supplier2 = medicine.supplier;
-            var demander2 = productOwner;
+            var name = medicine.name;
+            var value = medicine.value;
+            var numberOf = numberOfSupply;
+            var owner = medicine.owner;
+            var expirationDate = medicine.expirationDate;
+            var issueDate = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
+                today.getHours() + "" + today.getMinutes() + ""  ;
+            var status = 'supplied';
+            var supplier = medicine.supplier;
+            var demander = productOwner;
 
             const medicine2 = {
-                name2,
+                name,
                 docType: 'medicine',
-                value2,
-                numberOf2,
-                owner2,
-                expirationDate2,
-                issueDate2,
-                status2,
-                supplier2,
-                demander2
+                value,
+                numberOf,
+                owner,
+                expirationDate,
+                issueDate,
+                status,
+                supplier,
+                demander
             };
 
-            await ctx.stub.putState(medicineNumber + issueDate2, Buffer.from(JSON.stringify(medicine2)));
+            await ctx.stub.putState(medicineNumber + issueDate, Buffer.from(JSON.stringify(medicine2)));
         }
         else{//demand exceeds supply
             throw new Error(`${medicineNumber} Supply is not enough`);
