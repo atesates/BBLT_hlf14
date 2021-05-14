@@ -305,7 +305,7 @@ function countMyself() {
         // It has not... perform the initialization
         countMyself.counter = 0;
     }
-    else if(countMyself.counter > 98){// there are 100 medicine that initialized
+    else if(countMyself.counter > 798){// there are 100 medicine that initialized
         countMyself.counter = 0;
     }
     var rt = ++countMyself.counter;
