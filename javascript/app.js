@@ -17,21 +17,21 @@ app.use(ejsLayouts);
 require('./app_server/routers/routeManager')(app);
 const port = 4000;
 
-app.listen(port, function() {
-  console.log("Server is running on Port: " + port);
-});
+// app.listen(port, function() {
+//   console.log("Server is running on Port: " + port);
+// });
 
 
-// if (cluster.isMaster) {
-//   for (var i = 0; i < numCPUs; i++) {
-//     // Create a worker
-//     cluster.fork();
-//   }
-// } else {
-//   // Workers share the TCP connection in this server
-//   // All workers use this port
-//   app.listen(port, function() {
-//     console.log("Server is running on Port: " + port);
-//   });
-// }
+if (cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    // Create a worker
+    cluster.fork();
+  }
+} else {
+  // Workers share the TCP connection in this server
+  // All workers use this port
+  app.listen(port, function() {
+    console.log("Server is running on Port: " + port);
+  });
+}
 

@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+sudo rm -rf /home/ates/fabric-samples/BBLT_hlf14/javascript/wallet/*
 set -e
 
 function clearContainers() {

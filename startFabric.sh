@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # Exit on first error
+sudo rm -rf /home/ates/fabric-samples/BBLT_hlf14/javascript/wallet/admin/*
+sudo rm -rf /home/ates/fabric-samples/BBLT_hlf14/javascript/wallet/user1/*
 set -e
 
 # don't rewrite paths for Windows Git Bash users
@@ -43,7 +45,7 @@ rm -rf ./hfc-key-store
 # launch network; create channel and join peer to channel
 cd ../first-network
 echo y | ./byfn.sh down
-echo y | ./byfn.sh up -a -n -s couchdb
+echo y | ./byfn.sh up -a -n -s leveldb
 
 CONFIG_ROOT=/opt/gopath/src/github.com/hyperledger/fabric/peer
 ORG1_MSPCONFIGPATH=${CONFIG_ROOT}/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp

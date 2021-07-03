@@ -84,8 +84,8 @@ async function createSupply() {
 
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
-        
-        var preId = countMyself()
+        var preId = Math.floor(Math.random() * 1000000)
+        //var preId = countMyself()
 
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
@@ -194,6 +194,7 @@ async function getAllSupplyAndDemand() {
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
+        try{
         await gateway.connect(ccpPath, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: true } });
         console.log('connect');
 
@@ -209,6 +210,58 @@ async function getAllSupplyAndDemand() {
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
         const result = await contract.evaluateTransaction('queryAllMedicines');
+        //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        console.log('==================SUCCESS================')
+        return prettyJSONString(result.toString());
+        }
+        catch {
+			// Disconnect from the gateway when the application is closing
+			// This will close all connections to the network
+			console.log('Disconnect from Fabric gateway.');
+			gateway.disconnect();
+			console.log('Disconnected');
+
+		}
+    } catch (error) {
+        console.error(`Failed to evaluate transaction: ${error}`);
+        process.exit(1);
+    }
+	
+}
+async function getOneSupplyAndDemand() {
+	try {
+
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), 'wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists('user1');
+        if (!userExists) {
+            console.log('An identity for the user "user1" does not exist in the wallet');
+            console.log('Run the registerUser.js application before retrying');
+            return;
+        }
+        console.log('gateway');
+
+        // Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccpPath, { wallet, identity: 'user1', discovery: { enabled: true, asLocalhost: true } });
+        console.log('connect');
+
+        // Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('mychannel');
+        console.log('network');
+
+        // Get the contract from the network.
+        const contract = network.getContract('medicinetransfer');
+        console.log('contract');
+
+        // Evaluate the specified transaction.
+        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
+        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
+        const result = await contract.evaluateTransaction('queryMedicines', 'MEDICINE0');
         //console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         console.log('==================SUCCESS================')
     } catch (error) {
@@ -255,7 +308,7 @@ async function supply(){
         console.log('Transaction has been submitted:' + preId);
 
         // Disconnect from the gateway.
-        await gateway.disconnect();
+        gateway.disconnect();
 
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
@@ -305,13 +358,13 @@ function countMyself() {
         // It has not... perform the initialization
         countMyself.counter = 0;
     }
-    else if(countMyself.counter > 178){// there are 100 medicine that initialized
-        countMyself.counter = 0;
-    }
+    // else if(countMyself.counter > 178){// there are 100 medicine that initialized
+    //     countMyself.counter = 0;
+    // }
     var rt = ++countMyself.counter;
     // Do something stupid to indicate the value
     console.log('static value: ' + rt);
     return rt;
 }
-module.exports = { supply, enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById, queryFabcar}
+module.exports = { getOneSupplyAndDemand, supply, enrollInit, createSupply, getAllSupplyAndDemand, createPurchase, getPoductById, queryFabcar}
 

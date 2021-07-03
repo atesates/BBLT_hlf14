@@ -1,14 +1,14 @@
 <div class="container">
   <div class="homePage">
     <h4 class="font-weight-bold" style="text-align: center;">
-      <%=result%>
+      <!-- <%=result%> -->
     </h4>
   </div>
   <table class="table table-hover">
     <thead class='text-dark' style="background-color: #e3f2fd;">
       <tr>
         
-       
+        <th>id</th>
         <th>name</th>
         <th>owner</th>
         <th>value</th>
@@ -23,7 +23,9 @@
     <tbody>
       <%for(let i=0; i< result.length; i++){%>
         <tr class="bg-light">
-     
+          <th>
+            <%=result[i].Key%>
+          </th>
     
           <th>
             <%=result[i].Record.name%>

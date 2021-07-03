@@ -61,18 +61,20 @@ module.exports.callPurchase = (req, res) => {
                 message: 'An error occurred trying to process your request',
             });
         })
+
+        
 }
 module.exports.callGetAllSupplyAndDemand = function (req, res) {
     console.log('aaaaaaaaaaaa')
     hlfOperations.getAllSupplyAndDemand().then(result=>{
         //hlfOperations.queryFabcar().then(result=>{
-        //console.log(result)
-        //res.render('supplylist', { result: JSON.parse(result) });
+        console.log(result)
+        res.render('supplylist', { result: JSON.parse(result) });
         //res.render('supplylist', { result: JSON.stringify(result) });
 
-        return res.status(200).json({
-            status: 'ok'
-        });
+        // return res.status(200).json({
+        //     status: 'ok'
+        // });
 
     })
     // hlfOperations.getAllSupplyAndDemand(function (err, results) {

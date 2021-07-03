@@ -161,11 +161,11 @@ class MedicineTransfer extends Contract {
             var owner = medicine.owner;
             var expirationDate = medicine.expirationDate;
             var issueDate = today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear() + "" +
-                today.getHours() + "" + today.getMinutes() + ""  ;
+                today.getHours() + "" + today.getMinutes() + "" + today.getSeconds() + "" ;
             var status = 'supplied';
             var supplier = medicine.supplier;
             var demander = productOwner;
-
+            var preId = Math.floor(Math.random() * 100000)
             const medicine2 = {
                 name,
                 docType: 'medicine',
@@ -179,7 +179,7 @@ class MedicineTransfer extends Contract {
                 demander
             };
     
-            await ctx.stub.putState(medicineNumber + issueDate, Buffer.from(JSON.stringify(medicine2)));
+            await ctx.stub.putState(medicineNumber + preId, Buffer.from(JSON.stringify(medicine2)));
 
         }
         else if (Number(medicine.numberOf) == Number(numberOfSupply)){//supply equals to demand
