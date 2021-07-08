@@ -296,16 +296,16 @@ async function supply(){
         // Get the contract from the network.
         const contract = network.getContract('medicinetransfer');
         
-        //var preId = Math.floor(Math.random() * 100)
-        //console.log('preId;' + preId)
+        var preId = Math.floor(Math.random() * 100000)
+        console.log('preId;' + preId)
         
-        var preId = countMyself()
+        var preId2 = countMyself()
         
         // Submit the specified transaction.
         // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
         // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR10', 'Dave')
-        await contract.submitTransaction('supplySomeProduct', 'MEDICINE' + preId, 'Pharmacy' +  preId,'1');
-        console.log('Transaction has been submitted:' + preId);
+        await contract.submitTransaction('supplySomeProduct', 'MEDICINE' + preId2, 'Pharmacy' +  preId,'1');
+        console.log('Transaction has been submitted:' + preId2);
 
         // Disconnect from the gateway.
         gateway.disconnect();
@@ -358,9 +358,9 @@ function countMyself() {
         // It has not... perform the initialization
         countMyself.counter = 0;
     }
-    // else if(countMyself.counter > 178){// there are 100 medicine that initialized
-    //     countMyself.counter = 0;
-    // }
+    else if(countMyself.counter > 298){// there are 100 medicine that initialized
+        countMyself.counter = 0;
+    }
     var rt = ++countMyself.counter;
     // Do something stupid to indicate the value
     console.log('static value: ' + rt);

@@ -1,1 +1,3 @@
 Method,Name,Error,Occurrences
+GET,/supply/callpurchase,"('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",37
+GET,/supply/callpurchase,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",2

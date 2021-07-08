@@ -1,2 +1,1 @@
 Method,Name,Error,Occurrences
-GET,/supply/callpurchase,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",20
